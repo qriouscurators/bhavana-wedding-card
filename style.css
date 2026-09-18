@@ -1,0 +1,1245 @@
+:root {
+  --wine: #E7C5C4;
+  --wine2: #F0D9D0;
+  --paper: #FBF7F2;
+  --ink: #665955;
+  --gold: #B99A68;
+  --rose: #B66F79;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.locked {
+  overflow: hidden;
+}
+
+
+/* =========================================
+   INTRO
+   ========================================= */
+
+.intro {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #E7C5C4, #F0D9D0);
+  transition: opacity 1s, visibility 1s;
+}
+
+.intro::before,
+.intro::after,
+.petals {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background-image:
+    radial-gradient(
+      ellipse at 20% 30%,
+      transparent 0 28px,
+      rgba(255, 150, 160, 0.18) 29px 31px,
+      transparent 32px
+    ),
+    radial-gradient(
+      ellipse at 70% 75%,
+      transparent 0 39px,
+      rgba(255, 150, 160, 0.13) 40px 42px,
+      transparent 43px
+    );
+  background-size: 190px 170px;
+  transform: rotate(-14deg);
+}
+
+.intro::after {
+  transform: rotate(22deg);
+  opacity: 0.55;
+}
+
+.intro.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-delay: 1.2s;
+}
+
+
+/* =========================================
+   ENVELOPE
+   ========================================= */
+
+.envelope {
+  position: relative;
+  width: min(92vw, 430px);
+  height: 300px;
+  z-index: 2;
+  perspective: 1000px;
+  margin-top: -90px;
+}
+
+.front {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #F0D9D0, #E7C5C4);
+  clip-path: polygon(
+    0 22%,
+    50% 65%,
+    100% 22%,
+    100% 100%,
+    0 100%
+  );
+  filter: drop-shadow(0 12px 18px #24030a88);
+}
+
+.flap {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background: linear-gradient(160deg, #F0D9D0, #E7C5C4);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.paper {
+  position: absolute;
+  z-index: 1;
+  left: 6%;
+  right: 6%;
+  bottom: 3%;
+  height: 91%;
+  padding: 28px 22px;
+  text-align: center;
+  background: #FCF8F4;
+  border: 1px solid #E5D5C5;
+  box-shadow: 0 5px 18px #32081366;
+  transition: transform 1s 0.55s ease;
+  font-size: 12px;
+}
+
+.paper h1,
+.hero h2,
+footer h2 {
+  font: 500 38px "Cormorant Garamond", Georgia, serif;
+  color: var(--wine);
+  margin: 8px;
+}
+
+.paper small {
+  font: 11px Georgia, "Times New Roman", serif;
+  color: var(--gold);
+  display: block;
+}
+
+.ganesh,
+.ornament {
+  font-size: 25px;
+  color: #8C7865;
+}
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 6px double #C9AE83;
+  background: radial-gradient(
+    circle at 38% 32%,
+    #FFF8EF,
+    #D2B486
+  );
+  color: #7A5A49;
+  font-size: 41px;
+  box-shadow: 0 5px 15px #1e030aaa;
+  cursor: pointer;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.seal:hover {
+  transform: scale(1.06);
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.open .paper {
+  transform: translateY(-150px);
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  transform: scale(1.5);
+}
+
+
+/* =========================================
+   OPENING COPY
+   ========================================= */
+
+.opening-copy {
+  position: absolute;
+  z-index: 4;
+  bottom: 8vh;
+  color: #fff;
+  text-align: center;
+  font: 500 25px "Cormorant Garamond", Georgia, serif;
+  line-height: 1.35;
+  text-shadow: 0 2px 5px #39040c;
+}
+
+.opening-copy strong {
+  font-weight: 400;
+}
+
+.tap {
+  position: absolute;
+  bottom: 3vh;
+  z-index: 4;
+  color: #f3d3c4;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 9px;
+}
+
+.tap:after {
+  content: "";
+  display: block;
+  width: 70px;
+  border-bottom: 1px solid #fff8;
+  margin: 8px auto;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      #EDE1D9 0 2px,
+      transparent 3px
+    ),
+    #FCF8F4;
+  background-size: 120px 120px;
+}
+
+section:not(.intro) {
+  min-height: 100svh;
+  padding: 90px max(24px, calc((100vw - 520px) / 2));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* =========================================
+   OLD HERO
+   ========================================= */
+
+.hero {
+  border: 15px solid transparent;
+  border-image: linear-gradient(
+    45deg,
+    var(--gold),
+    transparent,
+    var(--rose)
+  ) 1;
+}
+
+.hero p {
+  max-width: 420px;
+  font-size: 19px;
+}
+
+.hero h2 {
+  font-size: 64px;
+  margin: -2px;
+}
+
+.gold,
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.scroll-link {
+  margin-top: 35px;
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+}
+
+.scroll-link b {
+  display: block;
+  font-size: 22px;
+}
+
+
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+h3 {
+  font: 500 47px "Cormorant Garamond", Georgia, serif;
+  color: var(--wine);
+  margin: 8px 0 14px;
+}
+
+
+/* =========================================
+   DATE CARDS
+   ========================================= */
+
+.date-cards {
+  display: flex;
+  gap: 12px;
+  margin: 38px 0;
+}
+
+.scratch {
+  width: 105px;
+  height: 130px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #B97982, #985966);
+  box-shadow: 0 8px 18px #7d364129;
+  color: #fff;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.scratch span {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.scratch.revealed {
+  background: #fff;
+  color: var(--wine);
+  font: 600 23px Georgia, "Times New Roman", serif;
+  border: 1px solid #E9D7D8;
+}
+
+.scratch.revealed span {
+  display: none;
+}
+
+.micro {
+  max-width: 350px;
+  margin-top: 40px;
+}
+
+.highlight {
+  background: #F1E5C8;
+  padding: 5px 25px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+
+
+/* =========================================
+   POLAROIDS
+   ========================================= */
+
+.polaroids {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 35px;
+}
+
+.polaroids article {
+  background: #fff;
+  padding: 12px 12px 20px;
+  box-shadow: 0 8px 24px #5d292722;
+  transform: rotate(-2deg);
+}
+
+.polaroids article:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+.photo {
+  height: 270px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font: 500 35px "Cormorant Garamond", Georgia, serif;
+}
+
+.p1 {
+  background: linear-gradient(35deg, #594541, #B18D80);
+}
+
+.p2 {
+  background: linear-gradient(35deg, #77816A, #CBB8A3);
+}
+
+.p3 {
+  background: linear-gradient(35deg, #55504D, #B49A91);
+}
+
+.photo span {
+  color: #D8A6A9;
+}
+
+.polaroids em {
+  font: 500 21px "Cormorant Garamond", Georgia, serif;
+}
+
+
+/* =========================================
+   VENUE
+   ========================================= */
+
+.venue-card,
+.event-info,
+form {
+  width: 100%;
+  max-width: 430px;
+  background: #fff;
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: 0 7px 28px #9C69701a;
+}
+
+.venue-art {
+  height: 180px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(#E8D3C2, #F5E9DF);
+  font-size: 80px;
+  color: var(--wine);
+}
+
+.venue-card h4 {
+  font-size: 25px;
+}
+
+.venue-card a,
+.event-info a,
+form button {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: var(--wine);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+}
+
+
+/* =========================================
+   EVENTS
+   ========================================= */
+
+.events {
+  gap: 22px;
+}
+
+.day {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--wine);
+}
+
+.event-card {
+  width: 100%;
+  max-width: 430px;
+  min-height: 420px;
+  border-radius: 10px;
+  display: grid;
+  align-content: center;
+  color: #fff;
+  padding: 30px;
+  box-shadow: 0 8px 26px #34101833;
+}
+
+.event-card h4 {
+  font: 500 48px "Cormorant Garamond", Georgia, serif;
+  margin: 0;
+}
+
+.night {
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      #C98791,
+      transparent 20%
+    ),
+    linear-gradient(#76515A, #3F2930);
+}
+
+.stars,
+.reception,
+.phere {
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #E7D29C 0 4px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 80% 40%,
+      #D7BE82 0 5px,
+      transparent 6px
+    ),
+    linear-gradient(#4B4A5B, #3C3B4A);
+  background-size: 100px 120px, 140px 150px, auto;
+}
+
+.carnival {
+  background:
+    linear-gradient(#fff0f4aa, #fff8f5),
+    linear-gradient(45deg, #C8B2C2, #AFC4B7);
+  color: var(--wine);
+}
+
+.ceremony {
+  background:
+    linear-gradient(#E7CEC4aa, #F0E1D8),
+    #B88983;
+  color: var(--wine);
+}
+
+.event-info a {
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   RSVP
+   ========================================= */
+
+.rsvp form {
+  text-align: left;
+}
+
+.rsvp label {
+  display: block;
+  margin: 16px 0;
+  color: #806f66;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px 4px;
+  border: 0;
+  border-bottom: 1px solid #E7DAD2;
+  background: transparent;
+  font: 16px Georgia, "Times New Roman", serif;
+  color: var(--ink);
+}
+
+textarea {
+  height: 90px;
+  border: 1px solid #E7DAD2;
+  margin-top: 8px;
+  padding: 10px;
+}
+
+fieldset {
+  border: 0;
+  padding: 5px 0;
+  margin: 20px 0;
+}
+
+fieldset label {
+  background: #A96C73;
+  color: #fff !important;
+  padding: 13px;
+  border-radius: 7px;
+}
+
+fieldset input {
+  width: auto;
+  float: right;
+}
+
+form button {
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+#formMessage {
+  text-align: center;
+  color: var(--wine);
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+  min-height: 75svh;
+  background: #9F6870;
+  color: #fff;
+  padding: 80px 30px;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  font-size: 18px;
+}
+
+footer h2 {
+  color: #C5A76D;
+  font-size: 52px;
+}
+
+
+/* =========================================
+   SOUND BUTTON
+   ========================================= */
+
+.sound {
+  position: fixed;
+  z-index: 30;
+  right: 18px;
+  bottom: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #E7DCD4;
+  background: #fff;
+  color: var(--wine);
+  box-shadow: 0 3px 14px #42131d33;
+}
+
+
+/* =========================================
+   REVEAL
+   ========================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* =========================================
+   WEDDING INVITATION HERO
+   ========================================= */
+
+.wedding-invite-hero {
+  position: relative !important;
+  width: 100vw !important;
+  max-width: none !important;
+  margin: 0 0 0 calc(50% - 50vw) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  line-height: normal !important;
+}
+
+.wedding-invite-hero * {
+  box-sizing: border-box;
+}
+
+
+/* IMAGE */
+
+.wedding-invite-bg {
+  position: relative !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+}
+
+.wedding-invite-bg img,
+.wedding-invite-bg video {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* =========================================
+   WEDDING TEXT OVER IMAGE
+   ========================================= */
+
+.wedding-invite-content {
+  position: absolute !important;
+
+  top: 38% !important;
+
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+
+  width: 70% !important;
+  max-width: 750px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  text-align: center !important;
+  z-index: 5 !important;
+}
+
+
+/* Blessing */
+
+.wedding-invite-blessing {
+  margin: 0 0 28px !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(14px, 1.4vw, 20px) !important;
+  line-height: 1.6 !important;
+
+  color: #806250 !important;
+}
+
+
+/* Intro */
+
+.wedding-invite-intro {
+  margin: 0 0 28px !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(13px, 1.3vw, 18px) !important;
+  line-height: 1.55 !important;
+
+  color: #765B4D !important;
+}
+
+
+/* Names */
+
+.wedding-invite-name {
+  margin: 0 !important;
+
+  font-family: "Cormorant Garamond",
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size: clamp(38px, 5vw, 70px) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+
+  color: #8D6250 !important;
+
+  letter-spacing: 0.5px !important;
+}
+
+
+/* Parents */
+
+.wedding-invite-parents {
+  margin: 10px 0 0 !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(11px, 1.05vw, 16px) !important;
+  line-height: 1.4 !important;
+
+  color: #765E50 !important;
+}
+
+
+/* WITH */
+
+.wedding-invite-with {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 55% !important;
+
+  margin: 20px auto !important;
+  padding: 0 !important;
+
+  gap: 14px !important;
+}
+
+.wedding-invite-with span {
+  flex: 1 !important;
+
+  display: block !important;
+
+  height: 1px !important;
+
+  background: rgba(112, 80, 44, 0.45) !important;
+}
+
+.wedding-invite-with em {
+  flex: none !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+
+  font-size: 15px !important;
+  font-style: italic !important;
+
+  color: #806452 !important;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media screen and (max-width: 749px) {
+
+  .wedding-invite-content {
+    top: 28% !important;
+    width: 76% !important;
+  }
+
+  .wedding-invite-blessing {
+    margin-bottom: 14px !important;
+    font-size: 11px !important;
+  }
+
+  .wedding-invite-intro {
+    margin-bottom: 14px !important;
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+  }
+
+  .wedding-invite-name {
+    font-size: clamp(27px, 8vw, 43px) !important;
+  }
+
+  .wedding-invite-parents {
+    margin-top: 5px !important;
+    font-size: 8px !important;
+  }
+
+  .wedding-invite-with {
+    width: 48% !important;
+    margin: 9px auto !important;
+    gap: 8px !important;
+  }
+
+  .wedding-invite-with em {
+    font-size: 9px !important;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 420px) {
+
+  .date-cards {
+    gap: 7px;
+  }
+
+  .scratch {
+    width: 28vw;
+    height: 118px;
+  }
+
+  .opening-copy {
+    font-size: 22px;
+  }
+
+  .envelope {
+    height: 270px;
+  }
+
+  .hero h2 {
+    font-size: 54px;
+  }
+}
+
+
+/* =========================================
+   FINAL TYPOGRAPHY
+   Luxury editorial wedding style
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+/* Clean supporting typography */
+body,
+button,
+input,
+select,
+textarea,
+p,
+span,
+a,
+label,
+li,
+small,
+strong,
+em {
+  font-family: "Montserrat", Arial, sans-serif !important;
+}
+
+/* Luxury serif typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.paper h1,
+.hero h2,
+footer h2,
+.photo,
+.polaroids em,
+.event-card h4,
+.wedding-invite-name {
+  font-family: "Bodoni Moda", "Times New Roman", serif !important;
+  font-weight: 500 !important;
+}
+
+/* Main wedding names — elegant, not handwritten */
+.wedding-invite-name {
+  font-family: "Bodoni Moda", "Times New Roman", serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Small uppercase labels */
+.eyebrow,
+.gold,
+.day,
+.tap,
+.highlight,
+.scroll-link {
+  font-family: "Montserrat", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 2.5px !important;
+}
+
+/* Supporting wedding copy */
+.wedding-invite-blessing,
+.wedding-invite-intro,
+.wedding-invite-parents {
+  font-family: "Montserrat", Arial, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* Romantic "with" */
+.wedding-invite-with,
+.wedding-invite-with em {
+  font-family: "Bodoni Moda", "Times New Roman", serif !important;
+  font-style: italic !important;
+}
+
+/* Buttons & forms */
+button,
+input,
+select,
+textarea {
+  font-family: "Montserrat", Arial, sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Headline refinement */
+.paper h1 {
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+}
+
+h3,
+.hero h2,
+footer h2,
+.event-card h4 {
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+
+/* =========================================
+   DATE WORTH REMEMBERING — SNELL ROUNDHAND
+   ========================================= */
+
+.paper h1 {
+  font-family: "Snell Roundhand", "Bickham Script Pro", "Segoe Script", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: 0 !important;
+  line-height: 0.95 !important;
+}
+/* ==============================
+   FINAL WEDDING COLOR MATCH
+   ============================== */
+
+body {
+  background: #FBF6EF !important;
+  color: #765E58 !important;
+}
+
+
+/* Main sections */
+main {
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(198,161,91,0.08) 0 2px,
+      transparent 3px
+    ),
+    #FBF6EF !important;
+}
+
+
+/* Date section */
+.date-section {
+  background: linear-gradient(
+    180deg,
+    #FBF6EF 0%,
+    #F7ECE7 100%
+  ) !important;
+}
+
+
+.date-flourish {
+  color: #B78A5B !important;
+}
+
+
+.date-flourish span {
+  color: #B77B82 !important;
+}
+
+
+.eyebrow,
+.countdown-kicker,
+.scratch-kicker {
+  color: #C6A15B !important;
+}
+
+
+/* Main heading */
+.date-title {
+  color: #9B646C !important;
+}
+
+
+/* Description text */
+.micro {
+  color: #806A62 !important;
+}
+
+
+/* Cards */
+.scratch-date-card {
+  background: linear-gradient(
+    145deg,
+    #C88B91,
+    #A96570
+  ) !important;
+}
+
+
+/* Countdown boxes */
+.countdown div {
+  background: #FFF9F4 !important;
+  border: 1px solid #E7D4C5 !important;
+}
+
+.countdown strong {
+  color: #B77B82 !important;
+}
+
+
+/* Calendar button */
+.btn-cal-invite {
+  background: #E8BFC1 !important;
+  color: #fff !important;
+}
+
+
+/* Footer */
+footer {
+  background: #A87980 !important;
+}
+
+footer h2 {
+  color: #D4B06A !important;
+}
+
+.footer-message {
+  color: #F8EDE5 !important;
+}
+.scroll-links{
+  color: #F8EDE5
+}
+
+/* Venue/event cards */
+.venue-card,
+.event-info,
+form {
+  background: #FFF9F4 !important;
+  border: 1px solid #E8D7C7;
+}
+.timer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.function-clean-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.function-clean-media img,
+.function-clean-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.function-clean-media video {
+  background: transparent;
+}
+
+
+/* =========================================
+   FIRST PAGE
+   ========================================= */
+
+.first-page-hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* Soft opening reveal after the envelope */
+.intro.opened ~ #invitation .first-page-hero {
+  animation: heroSoftReveal 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes heroSoftReveal {
+  from {
+    opacity: 0.35;
+    transform: translate3d(0, 25px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.events {
+  position: relative;
+  z-index: 3;
+  background: #fffdf9;
+}
+
+
+/* =========================================
+   SCROLL CUE
+   A small gold ring with a soft chevron at the
+   foot of the first page. It breathes gently and
+   fades away the moment the page moves.
+   ========================================= */
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(8px, 2vw, 16px);
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: clamp(30px, 7vw, 36px);
+  height: clamp(30px, 7vw, 36px);
+
+  border: 1px solid rgba(180, 138, 74, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 250, 244, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(122, 37, 55, 0.1);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: scrollCueFloat 2.8s ease-in-out infinite;
+  transition: opacity 0.7s ease;
+}
+
+.scroll-cue span {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-right: 1.8px solid #8f5f2e;
+  border-bottom: 1.8px solid #8f5f2e;
+  transform: rotate(45deg);
+}
+
+@keyframes scrollCueFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(5px); }
+}
+
+/* Appears only once the video is past its halfway mark */
+body.cue-visible .scroll-cue {
+  opacity: 0.95;
+}
+
+/* Once the page has moved, the cue has done its job */
+body.cue-done .scroll-cue {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+  }
+
+  .intro.opened ~ #invitation .first-page-hero {
+    animation: none;
+  }
+}

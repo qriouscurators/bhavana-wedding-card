@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faece5">
+
+  <title>Bhavana &amp; Divesh — Wedding Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Satisfy&display=swap"
+    rel="stylesheet">
+
+  <link rel="preload" href="fonts/Tempting.ttf" as="font" type="font/ttf" crossorigin>
+
+  <link rel="preload" href="fonts/Silk Serif Regular.otf" as="font" type="font/otf" crossorigin>
+
+  <link rel="preload" href="fonts/Silk Serif Medium.otf" as="font" type="font/otf" crossorigin>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reference-match.css">
+  <link rel="stylesheet" href="redesign.css">
+
+  <style>
+    @font-face {
+      font-family: 'Silk Serif';
+      src: url('fonts/Silk Serif Light.otf') format('opentype'),
+        local('Silk Serif Light');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Silk Serif';
+      src: url('fonts/Silk Serif SemiBold.otf') format('opentype'),
+        local('Silk Serif SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Silk Serif';
+      src: url('fonts/Silk Serif Medium.otf') format('opentype'),
+        local('Silk Serif Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Silk Serif';
+      src: url('fonts/Silk Serif Regular.otf') format('opentype'),
+        local('Silk Serif Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Countdown section with timer.png as background */
+
+    .date-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      background-image: url("timer.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    /* Light overlay for countdown visibility */
+    .date-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: rgba(255, 247, 242, 0.08);
+    }
+
+    .minimal-date-shell {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 50px 20px;
+    }
+
+    .countdown-minimal-wrap {
+      width: min(90%, 720px);
+      margin: 0 auto;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .countdown-kicker {
+      margin: 0 0 24px;
+      color: #733d48;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(25px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .minimal-countdown {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: clamp(5px, 2vw, 18px);
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+
+    .countdown-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(55px, 14vw, 105px);
+      height: clamp(55px, 14vw, 105px);
+      border: 1px solid rgba(115, 61, 72, 0.45);
+      border-radius: 50%;
+      background: rgba(255, 250, 247, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .countdown-box strong {
+      color: #733d48;
+      font-family: "Cinzel", serif;
+      font-size: clamp(19px, 5vw, 36px);
+      font-weight: 500;
+    }
+
+    .countdown-label {
+      margin-top: 10px;
+      color: #733d48;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(12px, 2.5vw, 17px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .countdown-divider {
+      margin-top: clamp(15px, 5vw, 35px);
+      color: #733d48;
+      font-family: "Cinzel", serif;
+      font-size: clamp(20px, 5vw, 36px);
+      font-style: normal;
+      line-height: 1;
+    }
+
+    @media (max-width: 600px) {
+      .date-section {
+        min-height: 100svh;
+        background-position: center center;
+      }
+
+      .minimal-date-shell {
+        padding: 40px 8px;
+      }
+
+      .countdown-minimal-wrap {
+        width: 100%;
+        padding: 20px 5px;
+      }
+
+      .minimal-countdown {
+        gap: 3px;
+      }
+
+      .countdown-unit {
+        min-width: 52px;
+      }
+
+      .countdown-label {
+        font-size: 10px;
+        letter-spacing: 0.03em;
+      }
+
+      .countdown-divider {
+        margin-inline: 1px;
+      }
+    }
+
+    /* Wedding Function Date Divider (Luxury Minimal Design) */
+    .function-top-desc,
+    .function-top-des {
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      max-width: 620px !important;
+      margin: 18px auto 26px !important;
+      padding: 0 16px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Elegant tapered gold hairline dividers */
+    .function-top-desc::before,
+    .function-top-des::before,
+    .function-top-desc::after,
+    .function-top-des::after {
+      content: "" !important;
+      flex: 1 !important;
+      height: 1px !important;
+      pointer-events: none !important;
+    }
+
+    .function-top-desc::before,
+    .function-top-des::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(198, 161, 91, 0.48) 100%) !important;
+      margin-right: 14px !important;
+    }
+
+    .function-top-desc::after,
+    .function-top-des::after {
+      background: linear-gradient(90deg, rgba(198, 161, 91, 0.48) 0%, transparent 100%) !important;
+      margin-left: 14px !important;
+    }
+
+    .function-step-badge {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+
+      /* Luxury Frosted Glass Capsule with Subtle Pearlescent Light Sweep */
+      background: linear-gradient(110deg,
+          rgba(255, 255, 255, 0.88) 0%,
+          rgba(255, 255, 255, 0.88) 35%,
+          rgba(255, 250, 238, 0.98) 50%,
+          rgba(255, 255, 255, 0.88) 65%,
+          rgba(255, 255, 255, 0.88) 100%) !important;
+      background-size: 240% 100% !important;
+      animation: badge-shimmer-sweep 5s ease-in-out infinite !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+
+      border: 1px solid rgba(198, 161, 91, 0.42) !important;
+      border-radius: 50px !important;
+      padding: 8px 24px !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+
+      box-shadow:
+        0 4px 20px rgba(122, 37, 55, 0.07),
+        0 1px 3px rgba(198, 161, 91, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+
+      /* Typography using luxury Silk Serif with strict lining numerals */
+      font-family: "Silk Serif", "Cinzel", Georgia, serif !important;
+      font-variant-numeric: lining-nums tabular-nums !important;
+      font-feature-settings: "lnum" 1, "tnum" 1 !important;
+      font-size: clamp(13px, 3vw, 15.5px) !important;
+      font-weight: 500 !important;
+      font-style: normal !important;
+      letter-spacing: clamp(1.8px, 0.4vw, 2.8px) !important;
+      text-transform: uppercase !important;
+      white-space: nowrap !important;
+      line-height: 1.1 !important;
+
+      /* High-visibility Deep Wine Color matching theme */
+      color: var(--wine-deep, #7a2537) !important;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+    }
+
+    /* Subtle Shimmer Animation */
+    @keyframes badge-shimmer-sweep {
+
+      0%,
+      35% {
+        background-position: 100% 0;
+      }
+
+      65%,
+      100% {
+        background-position: 0% 0;
+      }
+    }
+
+    /* Gold Sparkle Diamonds */
+    .function-step-badge::before,
+    .function-step-badge::after {
+      content: "✦" !important;
+      font-family: system-ui, -apple-system, sans-serif !important;
+      font-size: 10px !important;
+      color: #c6a15b !important;
+      line-height: 1 !important;
+      display: inline-block !important;
+      animation: diamond-pulse 3s ease-in-out infinite alternate !important;
+    }
+
+    .function-step-badge::before {
+      margin-right: 12px !important;
+    }
+
+    .function-step-badge::after {
+      margin-left: 12px !important;
+    }
+
+    @keyframes diamond-pulse {
+      0% {
+        opacity: 0.6;
+        transform: scale(0.9);
+        filter: drop-shadow(0 0 1px rgba(198, 161, 91, 0.3));
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.18) rotate(6deg);
+        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.7));
+      }
+
+      100% {
+        opacity: 0.6;
+        transform: scale(0.9) rotate(-6deg);
+        filter: drop-shadow(0 0 1px rgba(198, 161, 91, 0.3));
+      }
+    }
+
+    .function-step-badge:hover {
+      transform: translateY(-2px) scale(1.025) !important;
+      border-color: rgba(198, 161, 91, 0.75) !important;
+      box-shadow:
+        0 8px 24px rgba(122, 37, 55, 0.12),
+        0 2px 8px rgba(198, 161, 91, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
+
+    @media (max-width: 480px) {
+
+      .function-top-desc,
+      .function-top-des {
+        padding: 0 10px !important;
+        margin: 14px auto 20px !important;
+      }
+
+      .function-step-badge {
+        padding: 6px 16px !important;
+        font-size: 12px !important;
+        letter-spacing: 1.5px !important;
+        font-weight: 500 !important;
+      }
+
+      .function-step-badge::before {
+        margin-right: 7px !important;
+        font-size: 9px !important;
+      }
+
+      .function-step-badge::after {
+        margin-left: 7px !important;
+        font-size: 9px !important;
+      }
+
+      .function-top-desc::before,
+      .function-top-des::before {
+        margin-right: 8px !important;
+      }
+
+      .function-top-desc::after,
+      .function-top-des::after {
+        margin-left: 8px !important;
+      }
+    }
+
+    /* Countdown title in Tempting cursive font (single-line on mobile) */
+    .wedding-countdown__title {
+      font-family: var(--font-tempting) !important;
+      color: var(--wine-deep, #7a2537) !important;
+      font-weight: 400 !important;
+      white-space: nowrap !important;
+      text-transform: capitalize !important;
+    }
+
+    /* Countdown text & timer styling */
+    .wedding-countdown__text,
+    .wedding-countdown__finished {
+      font-family: "Silk Serif", Georgia, serif !important;
+    }
+
+    .wedding-countdown__unit strong {
+      font-family: "Silk Serif", Georgia, serif !important;
+      font-weight: 600 !important;
+      font-variant-numeric: lining-nums tabular-nums !important;
+      font-feature-settings: "lnum" 1, "tnum" 1 !important;
+    }
+
+    .wedding-countdown__unit span {
+      font-family: "Silk Serif", Georgia, serif !important;
+      font-weight: 500 !important;
+    }
+
+    /* Canela Font */
+    @font-face {
+      font-family: "Canela";
+      src: url("fonts/Canela-Regular.woff2") format("woff2"),
+        url("fonts/Canela-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Video container */
+    .function-clean-media {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .function-clean-media video {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+    }
+
+    /* Caption vignette removed so video artwork stays bright and crisp */
+    .function-clean-media:has(.function-video-caption)::before {
+      display: none !important;
+    }
+
+    /* Caption — Luxury Frosted Glass Capsule matching wedding invitation aesthetic */
+    .function-video-caption {
+      position: absolute !important;
+      top: clamp(12px, 2.8vw, 22px) !important;
+      left: 50% !important;
+      z-index: 4 !important;
+      transform: translateX(-50%) !important;
+
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+
+      width: max-content !important;
+      max-width: min(88%, 520px) !important;
+      margin: 0 !important;
+      padding: clamp(6px, 1.3vw, 9px) clamp(16px, 3.2vw, 24px) !important;
+
+      /* Royal Pearlescent / Frosted Glass Capsule */
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.93) 0%,
+          rgba(255, 250, 244, 0.88) 100%) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+
+      border: 1px solid rgba(198, 161, 91, 0.45) !important;
+      border-radius: 999px !important;
+      box-shadow:
+        0 6px 20px rgba(90, 20, 35, 0.08),
+        0 1px 3px rgba(198, 161, 91, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+
+      /* Typography in Silk Serif italic with royal wine tone */
+      color: #5c1825 !important;
+      font-family: "Silk Serif", "Cormorant Garamond", Georgia, serif !important;
+      font-size: clamp(12px, 2.3vw, 15px) !important;
+      font-weight: 500 !important;
+      font-style: italic !important;
+      line-height: 1.35 !important;
+      letter-spacing: 0.025em !important;
+      text-align: center !important;
+      text-wrap: balance !important;
+
+      pointer-events: none !important;
+    }
+
+    .function-video-caption::before {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      .function-video-caption {
+        top: 12px !important;
+        max-width: 90% !important;
+        padding: 5.5px 14px !important;
+        font-size: clamp(11.5px, 3.3vw, 13.5px) !important;
+        line-height: 1.3 !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="locked">
+
+  <!-- Intro video -->
+  <section class="intro" id="intro" role="button" tabindex="0" aria-label="Tap to play">
+    <video id="entryVideo" playsinline preload="auto" poster="envelope.jpg">
+      <source src="enevelop.mp4#t=0.001" type="video/mp4">
+    </video>
+
+    <div class="tap-to-open" aria-hidden="true">
+      <span>Tap to Open</span>
+    </div>
+  </section>
+
+  <!-- Background music -->
+  <audio id="bgMusic" src="audio.mp3" loop preload="auto"></audio>
+
+  <main id="invitation">
+
+    <!-- First page -->
+    <section class="wedding-invite-hero first-page-hero">
+      <div class="hero-ambient hero-ambient-one" aria-hidden="true"></div>
+
+      <div class="hero-ambient hero-ambient-two" aria-hidden="true"></div>
+
+      <div class="wedding-invite-bg">
+        <video id="firstPageVideo" loop muted playsinline webkit-playsinline preload="auto" poster="First page.png">
+          <source src="firstscreen.mp4" type="video/mp4">
+        </video>
+
+        <div class="invite-frame" aria-hidden="true"></div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- Countdown section -->
+    <!-- timer.png is applied as the background -->
+    <!-- <section class="date-section reveal" id="date">
+      <div class="minimal-date-shell">
+
+        <div
+          class="countdown-minimal-wrap"
+          id="countdownWrap"
+          aria-live="polite"
+        >
+          <p class="countdown-kicker">
+            Count Down to Forever
+          </p>
+
+          <div
+            class="countdown minimal-countdown"
+            id="countdown"
+          >
+            <div class="countdown-unit">
+              <div class="countdown-box">
+                <strong id="days">00</strong>
+              </div>
+              <span class="countdown-label">Days</span>
+            </div>
+
+            <i class="countdown-divider">:</i>
+
+            <div class="countdown-unit">
+              <div class="countdown-box">
+                <strong id="hours">00</strong>
+              </div>
+              <span class="countdown-label">Hours</span>
+            </div>
+
+            <i class="countdown-divider">:</i>
+
+            <div class="countdown-unit">
+              <div class="countdown-box">
+                <strong id="minutes">00</strong>
+              </div>
+              <span class="countdown-label">Minutes</span>
+            </div>
+
+            <i class="countdown-divider">:</i>
+
+            <div class="countdown-unit">
+              <div class="countdown-box">
+                <strong id="seconds">00</strong>
+              </div>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section> -->
+
+    <!-- Wedding functions -->
+    <section class="events reveal" id="functions">
+
+      <div class="functions-heading">
+        <h3 class="functions-title">
+          Wedding Functions
+        </h3>
+
+        <div class="function-top-desc">
+          <span class="function-step-badge">
+            24 OCTOBER 2026
+          </span>
+        </div>
+      </div>
+
+      <div class="functions-grid minimal-functions-grid">
+
+        <!-- Mehendi -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="Mehendi.png"
+              aria-label="Mehendi celebration">
+              <source src="Mehandi104 (1).mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <!-- <p class="function-video-caption">
+              Love, laughter and a little mehendi magic.
+            </p> -->
+          </div>
+        </article>
+
+        <!-- Sangeet -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="Sangeet.png"
+              aria-label="Sangeet celebration">
+              <source src="sangeetnew.mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <!-- <p class="function-video-caption">
+              An evening of music, moves and memories.
+            </p> -->
+          </div>
+        </article>
+
+        <div class="function-top-desc">
+          <span class="function-step-badge">
+            25 OCTOBER 2026
+          </span>
+        </div>
+
+        <!-- Haldi -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="Haldii.png" aria-label="Haldi ceremony">
+              <source src="haldinewest.mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <!-- <p class="function-video-caption">
+              A golden beginning wrapped in joy.
+            </p> -->
+
+          </div>
+        </article>
+
+        <!-- Wedding -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="Wedding.png"
+              aria-label="Wedding ceremony">
+              <source src="Wedding final .mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <!-- <p class="function-video-caption">
+              Two hearts, one promise, forever begins here.
+            </p> -->
+          </div>
+        </article>
+
+        <!-- Reception -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="reception1044.png"
+              aria-label="Reception ceremony">
+              <source src="receptionfinal (1).mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <!-- <p class="function-video-caption">
+              Celebrating love, laughter and happily ever after.
+            </p> -->
+          </div>
+        </article>
+        <!-- RSVP -->
+        <article class="function-card-minimal">
+          <div class="function-clean-media">
+            <img src="RSVP104.png" alt="RSVP details" loading="lazy">
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Venue section -->
+    <section class="venue reveal" id="venue">
+
+      <p class="eyebrow">Where It Happens</p>
+
+      <h3 class="venue-title">
+        The Venue
+      </h3>
+
+      <div class="venue-card">
+
+        <img class="venue-art" src="venue-landscape.png" alt="Punya Laxmi, Kolkata" loading="lazy">
+
+        <h4>
+          Punya Laxmi
+          <br>
+          <small>Kolkata</small>
+        </h4>
+
+        <p>
+          Raynagar, Diamond Harbour, Dist: 24 Parganas (South)
+          <br>
+          West Bengal – 743331
+        </p>
+
+        <div class="venue-map-wrap">
+          <iframe class="venue-map" title="Punya Laxmi location map"
+            src="https://www.google.com/maps?q=Punya%20Laxmi%20Resort%2C%20Raynagar%2C%20Diamond%20Harbour%2C%20West%20Bengal%20743331&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+
+        <a class="btn-venue-maps"
+          href="https://www.google.com/maps/search/?api=1&query=Punya%20Laxmi%20Resort%2C%20Raynagar%2C%20Diamond%20Harbour%2C%20West%20Bengal%20743331"
+          target="_blank" rel="noopener noreferrer">
+          Open in Google Maps ↗
+        </a>
+
+      </div>
+    </section>
+    <section class="wedding-countdown" aria-labelledby="countdown-title">
+      <video class="wedding-countdown__bg" autoplay muted loop playsinline webkit-playsinline preload="auto"
+        aria-hidden="true">
+        <source src="countdownvideo.mp4" type="video/mp4">
+      </video>
+
+      <div class="wedding-countdown__overlay">
+        <div class="wedding-countdown__content">
+          <h2 id="countdown-title" class="wedding-countdown__title">
+            The Countdown Begins
+          </h2>
+
+          <div class="wedding-countdown__divider" aria-hidden="true">
+            <span></span>
+            <b>✦</b>
+            <span></span>
+          </div>
+
+          <p class="wedding-countdown__text">
+            A celebration of love, traditions and new beginnings<br>
+            is just around the corner.
+          </p>
+
+          <div class="wedding-countdown__timer" id="weddingCountdown" aria-live="polite">
+            <div class="wedding-countdown__unit">
+              <strong id="weddingDays">00</strong>
+              <span>DAYS</span>
+            </div>
+
+            <div class="wedding-countdown__separator"></div>
+
+            <div class="wedding-countdown__unit">
+              <strong id="weddingHours">00</strong>
+              <span>HOURS</span>
+            </div>
+
+            <div class="wedding-countdown__separator"></div>
+
+            <div class="wedding-countdown__unit">
+              <strong id="weddingMinutes">00</strong>
+              <span>MINUTES</span>
+            </div>
+
+            <div class="wedding-countdown__separator"></div>
+
+            <div class="wedding-countdown__unit">
+              <strong id="weddingSeconds">00</strong>
+              <span>SECONDS</span>
+            </div>
+          </div>
+
+          <p class="wedding-countdown__finished" id="countdownFinished" hidden>
+            The celebration begins today.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
